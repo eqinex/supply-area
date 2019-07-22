@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Dashboard' | trans() }}{% endblock %}
+
+{% block body %}
+    <div class="card pd-20 pd-sm-40">
+        <h6 class="card-body-title">{{ 'Purchases' | trans() }}</h6>
+        <p class="mg-b-20 mg-sm-b-30">{{ 'Purchases list' | trans() }}</p>
+
+        <div class="table-wrapper">
+            <table id="datatable1" class="table display responsive nowrap">
+                <thead>
+                <tr>
+                    <th class="wd-5p">#</th>
+                    <th class="wd-15p">{{ 'Code' | trans() }}</th>
+                    <th class="wd-20p">{{ 'Created At' | trans() }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% set count = 1 %}
+                {% for purchase in purchases %}
+                    <tr>
+                        <td>{{ count }}</td>
+                        <td><a href="{{ path('request_details', {'requestId': purchase.id}) }}">{{ purchase.code }}</a></td>
+                        <td>{{ purchase.createdAt | date('d.m.Y H:i') }}</td>
+                    </tr>
+                    {% set count = count + 1 %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

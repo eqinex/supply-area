@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ purchaseRequest.code }}{% endblock %}
+
+{% block body %}
+    <div class="card pd-20 pd-sm-40">
+        <h6 class="card-body-title">{{ 'Purchase items' | trans() }}</h6>
+        <p class="mg-b-20 mg-sm-b-30">{{ 'Purchase items list' | trans() }}</p>
+
+        <div class="table-wrapper">
+            <table id="datatable1" class="table display responsive nowrap">
+                <thead>
+                <tr>
+                    <th class="wd-5p">#</th>
+                    <th class="wd-20p">{{ 'Title' | trans() }}</th>
+                    <th class="wd-20p">{{ 'Sku' | trans() }}</th>
+                    <th class="wd-20p">{{ 'Quantity' | trans() }}</th>
+                    <th class="wd-20p">{{ 'Price' | trans() }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% set count = 1 %}
+                {% for item in items %}
+                    <tr>
+                        <td>{{ count }}</td>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.sku }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.price ? item.price : '-' }}</td>
+                    </tr>
+                    {% set count = count + 1 %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
